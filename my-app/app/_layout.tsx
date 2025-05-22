@@ -1,12 +1,13 @@
+// app/_layout.tsx
 import React, { useEffect } from 'react';
 import { Stack } from 'expo-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkUserSession } from '../store/authSlice';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import { Provider } from 'react-redux';
+import { store, AppDispatch, RootState } from '../store';
 
-import type { RootState, AppDispatch } from '../store';
-
-export default function RootLayout() {
+function LayoutInner() {
   const dispatch = useDispatch<AppDispatch>();
   const { token, isLoading } = useSelector((state: RootState) => state.auth);
 
@@ -41,6 +42,18 @@ export default function RootLayout() {
   );
 }
 
+export default function Layout() {
+  return (
+    <Provider store={store}>
+      <LayoutInner />
+    </Provider>
+  );
+}
+
 const styles = StyleSheet.create({
-  centered: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

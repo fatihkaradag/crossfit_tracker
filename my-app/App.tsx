@@ -1,7 +1,12 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import { Slot } from 'expo-router';
 
-export default function App({ children }: { children: React.ReactNode }) {
-  return <Provider store={store}>{children}</Provider>;
+export default function App() {
+  return (
+    <Provider store={store}>
+      <Slot />
+    </Provider>
+  );
 }
