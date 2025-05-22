@@ -4,8 +4,7 @@ import { Stack } from 'expo-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkUserSession } from '../store/authSlice';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
-import { Provider } from 'react-redux';
-import { store, AppDispatch, RootState } from '../store';
+import { AppDispatch, RootState } from '../store'; // Provider'ı buradan çıkar
 
 function LayoutInner() {
   const dispatch = useDispatch<AppDispatch>();
@@ -42,13 +41,7 @@ function LayoutInner() {
   );
 }
 
-export default function Layout() {
-  return (
-    <Provider store={store}>
-      <LayoutInner />
-    </Provider>
-  );
-}
+export default LayoutInner;
 
 const styles = StyleSheet.create({
   centered: {
